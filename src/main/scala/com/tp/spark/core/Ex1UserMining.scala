@@ -44,14 +44,16 @@ object Ex1UserMining {
    *   For each user return all his tweets
    */
   def tweetsByUser(): RDD[(String, Iterable[Tweet])] = {
-    ???
+    loadData()
+      .map(a=>(a.user,a))
+      .groupByKey()
   }
 
   /**
    *  Compute the number of tweets by user
    */
   def tweetByUserNumber(): RDD[(String, Int)] = {
-    ???
+    tweetsByUser.map(x => (x._1,x._2.size))
   }
 
 
@@ -59,7 +61,7 @@ object Ex1UserMining {
    *  Top 10 twitterers
    */
   def topTenTwitterers(): Array[(String, Int)] = {
-    ???
+    tweetByUserNumber.takeOrdered(10)(Ordering[Int].reverse.on(x=>x._2))
   }
 
 }

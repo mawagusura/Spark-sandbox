@@ -11,7 +11,12 @@ object Program {
       .setMaster("local")
 
     val sc = new SparkContext(conf)
-    Ex0WordcountDF.wordcount.show
-    println(Ex0WordcountDF.filterOnWordcount)
+    
+    // Exerice 0
+    //Ex0WordcountDF.wordcount.show
+    //println(Ex0WordcountDF.filterOnWordcount)
+
+    // Exercice 1
+    println(Ex1UserMining.topTenTwitterers)
   }
 }
