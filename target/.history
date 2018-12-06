@@ -1,0 +1,4 @@
+set logLevel in Global := Level.Error
+exit
+set logLevel in Global := Level.Error
+run
