@@ -6,13 +6,9 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 
 object Program {
   def main(args: Array[String]) = {
-    val conf = new SparkConf()
-      .setAppName("my-app")
-      .setMaster("local")
+    
+    
 
-    val sc = new SparkContext(conf)
-
-    Logger.getLogger("org").setLevel(Level.Error)
     
     // Exerice 0
     //Ex0WordcountDF.wordcount.show
@@ -22,7 +18,7 @@ object Program {
     //println(Ex1UserMining.topTenTwitterers)
 
     //exercice 2
-    println(Ex2TweetMining.mentionOnTweet)
+    println(Ex2TweetMining.mentionOnTweet.count)
 
   }
 }

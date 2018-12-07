@@ -44,7 +44,11 @@ object Ex3HashTagMining {
    *  Find all the hashtags mentioned on tweets
    */
   def hashtagMentionedOnTweet(): RDD[String] = {
-    ???
+    loadData().flatMap(tweet => tweet.text.split(" "))
+      .filter(mots => 
+        mots.startsWith("#") 
+        && mots.length>1
+        )
     }
 
 
@@ -52,14 +56,15 @@ object Ex3HashTagMining {
    *  Count how many times each hashtag is mentioned
    */
   def countMentions(): RDD[(String, Int)] = {
-    ???
+    hashtagMentionedOnTweet().map(mention => (mention, 1))
+      .reduceByKey(_+_)
   }
 
   /**
    *  Find the 10 most popular Hashtags by descending order
    */
   def top10HashTags(): Array[(String, Int)] = {
-    ???
+    countMentions().takeOrdered(10)(Ordering[Int].reverse.on(mention=>mention._2))
   }
 
 }

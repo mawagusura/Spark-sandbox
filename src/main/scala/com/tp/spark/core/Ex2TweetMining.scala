@@ -48,22 +48,26 @@ object Ex2TweetMining {
    *  Find all the persons mentioned on tweets (case sensitive)
    */
   def mentionOnTweet(): RDD[String] = {
-    loadData().flatMap(x => x.text.split(" "))
-      .filter(x => x.substring(0)=="@")
+    loadData().flatMap(tweet => tweet.text.split(" "))
+      .filter(mots => 
+        mots.startsWith("@") 
+        && mots.length>1
+        )
   }
 
   /**
    *  Count how many times each person is mentioned
    */
   def countMentions(): RDD[(String, Int)] = {
-    ???
+    mentionOnTweet().map(mention => (mention, 1))
+      .reduceByKey(_+_)
   }
 
   /**
    *  Find the 10 most mentioned persons by descending order
    */
   def top10mentions(): Array[(String, Int)] = {
-    ???
+    countMentions().takeOrdered(10)(Ordering[Int].reverse.on(mention=>mention._2))
   }
 
 }
