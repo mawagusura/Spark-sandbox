@@ -11,12 +11,18 @@ object Program {
       .setMaster("local")
 
     val sc = new SparkContext(conf)
+
+    Logger.getLogger("org").setLevel(Level.Error)
     
     // Exerice 0
     //Ex0WordcountDF.wordcount.show
     //println(Ex0WordcountDF.filterOnWordcount)
 
     // Exercice 1
-    println(Ex1UserMining.topTenTwitterers)
+    //println(Ex1UserMining.topTenTwitterers)
+
+    //exercice 2
+    println(Ex2TweetMining.mentionOnTweet)
+
   }
 }

@@ -45,8 +45,7 @@ object Ex1UserMining {
    */
   def tweetsByUser(): RDD[(String, Iterable[Tweet])] = {
     loadData()
-      .map(a=>(a.user,a))
-      .groupByKey()
+      .groupBy(_.user)
   }
 
   /**

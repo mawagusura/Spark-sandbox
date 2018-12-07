@@ -48,7 +48,8 @@ object Ex2TweetMining {
    *  Find all the persons mentioned on tweets (case sensitive)
    */
   def mentionOnTweet(): RDD[String] = {
-    ???
+    loadData().flatMap(x => x.text.split(" "))
+      .filter(x => x.substring(0)=="@")
   }
 
   /**
