@@ -49,10 +49,8 @@ object Ex2TweetMining {
    */
   def mentionOnTweet(): RDD[String] = {
     loadData().flatMap(tweet => tweet.text.split(" "))
-      .filter(mots => 
-        mots.startsWith("@") 
-        && mots.length>1
-        )
+      .filter(_.startsWith("@"))
+      .filter(_.length>1)
   }
 
   /**

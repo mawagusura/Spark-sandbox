@@ -45,10 +45,8 @@ object Ex3HashTagMining {
    */
   def hashtagMentionedOnTweet(): RDD[String] = {
     loadData().flatMap(tweet => tweet.text.split(" "))
-      .filter(mots => 
-        mots.startsWith("#") 
-        && mots.length>1
-        )
+      .filter(_.startsWith("#"))
+      .filter(_.length>1)
     }
 
 

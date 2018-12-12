@@ -31,7 +31,16 @@ object Ex4InvertedIndex {
 
     val tweets = sc.textFile ("data/reduced-tweets.json")
         .mapPartitions (TweetUtils.parseFromJson (_) )
-    ???
+    
+    val hashtags = tweets.flatMap(tweet => tweet.text.split(" "))
+      .filter(_.startsWith("#"))
+      .filter(_.length>1)
+
+
+    hashtags.map( ht => (ht, tweets.filter(_.text.split(" ").contains(ht)).collect().toIterable )).collectAsMap()
+
+
+
   }
 
 }
